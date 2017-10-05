@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 import os
 
 import dotenv
-import django.core.wsgi
+from django.core.wsgi import get_wsgi_application
 try:
     dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
     load_dotenv(dotenv_path)
