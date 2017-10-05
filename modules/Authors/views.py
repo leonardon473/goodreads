@@ -5,11 +5,18 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-#Son mis cosas
+#Mis cosas
 from .serializers import AuthorSerializer
 from .models import Author
 
 class ListAuthor(APIView):
+
+    '''
+    get:
+    Return a list of authors
+    post:
+    Create an author in scratch
+    '''
 
     def get(self, request):
         authors = Author.objects.all() #querysets SELECT * FROM Author

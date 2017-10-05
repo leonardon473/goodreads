@@ -19,14 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'oji_onyq4-^h10+ho9%7r7mf-6fv7q+!wrzp65co8)5w^)!!dh'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 DJANGO_APPS = [
@@ -86,21 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'goodreads.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'goodreads',
-       'USER': 'goodreads_user',
-       'PASSWORD': '',
-       'HOST': 'localhost',
-       'PORT': '5432'
-   }
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -124,24 +101,21 @@ AUTH_USER_MODEL = "Users.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
-'''
+
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     #'JWT_ALLOW_REFRESH': False,
-}'''
-
-OAUTH2_PROVIDER = {
-    # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(os.getcwd(), 'media')
